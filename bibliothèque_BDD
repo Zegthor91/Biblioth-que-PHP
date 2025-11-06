@@ -1,0 +1,56 @@
+CREATE DATABASE IF NOT EXISTS bibliotheque CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE bibliotheque;
+
+CREATE TABLE IF NOT EXISTS utilisateurs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL,
+    email VARCHAR(150) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS livres (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titre VARCHAR(255) NOT NULL,
+    auteur VARCHAR(150) NOT NULL,
+    utilisateur_id INT DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (utilisateur_id) REFERENCES utilisateurs(id) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS favoris (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    utilisateur_id INT NOT NULL,
+    livre_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY unique_favori (utilisateur_id, livre_id),
+    FOREIGN KEY (utilisateur_id) REFERENCES utilisateurs(id) ON DELETE CASCADE,
+    FOREIGN KEY (livre_id) REFERENCES livres(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO livres (titre, auteur, utilisateur_id) VALUES
+
+('Les Misérables', 'Victor Hugo', NULL),
+('Madame Bovary', 'Gustave Flaubert', NULL),
+('Germinal', 'Émile Zola', NULL),
+('Le Rouge et le Noir', 'Stendhal', NULL),
+('Eugénie Grandet', 'Honoré de Balzac', NULL),
+('Les Fleurs du mal', 'Charles Baudelaire', NULL),
+('Les Contemplations', 'Victor Hugo', NULL),
+('Alcools', 'Guillaume Apollinaire', NULL),
+('Du côté de chez Swann', 'Marcel Proust', NULL),
+('Le Grand Meaulnes', 'Alain-Fournier', NULL),
+('Zazie dans le métro', 'Raymond Queneau', NULL),
+('Le Cid', 'Pierre Corneille', NULL),
+('Phèdre', 'Jean Racine', NULL),
+('Le Misanthrope', 'Molière', NULL),
+('Candide', 'Voltaire', NULL),
+('Les Confessions', 'Jean-Jacques Rousseau', NULL),
+('Le Petit Prince', 'Antoine de Saint-Exupéry', NULL),
+('Vingt mille lieues sous les mers', 'Jules Verne', NULL),
+('Les Trois Mousquetaires', 'Alexandre Dumas', NULL),
+('Voyage au bout de la nuit', 'Louis-Ferdinand Céline', NULL),
+('Extension du domaine de la lutte', 'Michel Houellebecq', NULL);
+
+SELECT COUNT(*) AS 'Nombre de livres' FROM livres;
+SELECT * FROM livres ORDER BY auteur, titre;

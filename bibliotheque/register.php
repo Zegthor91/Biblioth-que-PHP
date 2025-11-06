@@ -1,3 +1,43 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h1>Inscription</h1>
+
+        <!-- Formulaire d'inscription -->
+        <form method="POST" action="">
+            <div>
+                <label for="nom">Nom :</label>
+                <input type="text" id="nom" name="nom" value="<?php echo isset($_POST['nom']) ? htmlspecialchars($_POST['nom']) : ''; ?>" required>
+            </div>
+            <div>
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" required>
+            </div>
+            <div>
+                <label for="password">Mot de passe :</label>
+                <input type="password" id="password" name="password" required>
+                <span>6 caractères minimum</span>
+            </div>
+            <div>
+                <label for="password_confirm">Confirmer :</label>
+                <input type="password" id="password_confirm" name="password_confirm" required>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+
+        <div>
+            <link href="dashboard.php">
+        </div>
+    </div>
+</body>
+</html>
+
 <?php
 
 session_start(); 
@@ -44,42 +84,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 ?>
-
-
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-    <h1>Inscription</h1>
-
-        <!-- Formulaire d'inscription -->
-        <form method="POST" action="">
-            <div>
-                <label for="nom">Nom :</label>
-                <input type="text" id="nom" name="nom" value="<?php echo isset($_POST['nom']) ? htmlspecialchars($_POST['nom']) : ''; ?>" required>
-            </div>
-            <div>
-                <label for="email">Email :</label>
-                <input type="email" id="email" name="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" required>
-            </div>
-            <div>
-                <label for="password">Mot de passe :</label>
-                <input type="password" id="password" name="password" required>
-                <span>6 caractères minimum</span>
-            </div>
-            <div>
-                <label for="password_confirm">Confirmer :</label>
-                <input type="password" id="password_confirm" name="password_confirm" required>
-            </div>
-            <button type="submit">Register</button>
-        </form>
-
-        <div>
-            <link href="dashboard.php">
-        </div>
-    </div>
-</body>
-</html>

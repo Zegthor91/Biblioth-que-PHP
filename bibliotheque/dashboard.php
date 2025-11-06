@@ -1,3 +1,21 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord</title>
+</head>
+<body>
+    <div class="navigation">
+        <a href="register.php">Register</a>
+        <a href="login.php">Log In</a>
+        <a href="logout.php">Log out</a>
+    </div>
+    
+</body>
+</html>
+
 <?php
 
 session_start();
@@ -49,20 +67,3 @@ $mes_favoris->execute([$user_id]);
 $mes_favoris = $mes_favoris->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
-
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tableau de bord</title>
-</head>
-<body>
-    <div class="navigation">
-        <a href="register.php">Register</a>
-        <a href="login.php">Log In</a>
-        <a href="logout.php">Log out</a>
-    </div>
-    
-</body>
-</html>

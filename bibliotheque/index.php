@@ -1,24 +1,46 @@
 <?php
 
+session_start();
 require_once 'db.php';
-include_once 'dashboard.php';
-include_once 'register.php';
-include_once 'login.php';
 
+// Traitement de la recherche
+$search = isset($_GET['search']) ? trim($_GET['search']) : '';
 ?>
-
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bibliothèque en ligne locale</title>
+    
 </head>
 <body>
-    <h1>Bibliothèque en ligne locale</h1>
-    <link href="dashboard.php">
+    <div class="navigation">
+        <?php if (isset($_SESSION['utilisateur_id'])): ?>
+            <span>Bonjour, <?= htmlspecialchars($_SESSION['utilisateur_nom']) ?></span>
+            <a href="dashboard.php">Tableau de bord</a>
+            <a href="logout.php">Se déconnecter</a>
+        <?php else: ?>
+            <a href="register.php">S'inscrire</a>
+            <a href="login.php">Se connecter</a>
+        <?php endif; ?>
+    </div>
 
-    <h2>Livres disponibles</h2>
+    <h1>Bibliothèque en ligne locale</h1>
+
+    <!-- Barre de recherche -->
+    <div class="search-bar">
+        <form method="GET" action="">
+            <input type="text" name="search" placeholder="Search ..." value="<?= htmlspecialchars($search) ?>">
+            <button type="submit">Rechercher</button>
+            <?php if ($search): ?>
+                <a href="index.php">Supprimer</a>
+            <?php endif; ?>
+        </form>
+    </div>
+
+<h2>Livres disponibles</h2>
 
 <?php
 
@@ -45,7 +67,7 @@ try {
 
 ?>
 
- <h2>Mes favoris</h2>
+<h2>Mes favoris</h2>
 <?php
 
 // Vérifie et parcours si il y a des éléments dans le tableau
@@ -67,6 +89,7 @@ if (!empty($mes_favoris)) {
     <?php
 }
 ?>
-    </div>
+</div>
+
 </body>
 </html>
