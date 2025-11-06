@@ -29,7 +29,6 @@ $search = isset($_GET['search']) ? trim($_GET['search']) : '';
 
     <h1>Bibliothèque en ligne locale</h1>
 
-    <!-- Barre de recherche -->
     <div class="search-bar">
         <form method="GET" action="">
             <input type="text" name="search" placeholder="Search ..." value="<?= htmlspecialchars($search) ?>">
@@ -45,7 +44,7 @@ $search = isset($_GET['search']) ? trim($_GET['search']) : '';
 <?php
 
 try {
-    $query = "SELECT id, titre, auteur FROM livres ORDER BY titre"; // Info du livre via une requete SQL
+    $query = "SELECT id, titre, auteur FROM livres ORDER BY titre";
     $stmt = $pdo->query($query); // Exécutution de la requête SQL
     $livres = $stmt->fetchAll(PDO::FETCH_ASSOC); // Récuperation de tous les livres
 
@@ -77,7 +76,7 @@ if (!empty($mes_favoris)) {
         ?>
         <div>
             <?= htmlspecialchars($favori['titre']); ?> 
-            ,                        <!-- Affichage des livres, du titre et de l'auteur -->                    
+            ,   <!-- Affichage des livres, du titre et de l'auteur dans les favoris -->                    
             <?= htmlspecialchars($favori['auteur']); ?>
         </div>
         <?php
