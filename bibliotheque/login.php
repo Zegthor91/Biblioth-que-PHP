@@ -2,11 +2,10 @@
 
 session_start();
 require_once 'db.php';
-include_once 'dashboard.php';
 
 // Vérifie si l'utilisateur est déjà connecté
 if (isset($_SESSION['utilisateur_id'])) {
-    header('Location: dashboard.php'); // Redirection vers le dashboard si l'utilisateur est bien connecté
+    header('Location: index.php'); // Redirection vers l'index (page principale) si l'utilisateur est bien connecté
     exit;
 }
 
@@ -33,8 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['utilisateur_nom'] = $utilisateur['nom'];
                 $_SESSION['utilisateur_email'] = $utilisateur['email'];
                 
-                // Redirige l'utilisateur vers le dashboard
-                header('Location: dashboard.php');
+                // Redirige vers la page principale (index.php)
+                header('Location: index.php');
                 exit;
             } else {
                 // Si il y a erreur sur l'email ou password
