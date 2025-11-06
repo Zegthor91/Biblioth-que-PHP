@@ -58,7 +58,6 @@ $mes_favoris = $mes_favoris->fetchAll(PDO::FETCH_ASSOC);
     <title>Tableau de bord</title>
 </head>
 <body>
-    <h1>Bienvenue</h1>
     <div class="navigation">
         <a href="register.php">Register</a>
         <a href="login.php">Log In</a>
